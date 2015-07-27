@@ -17,10 +17,10 @@ public:
 	void Reset();
 
 	//Read/write
-	const Byte ReadByte(Word const& address);
-	const Word ReadWord(Word const& address);
-	void WriteByte(Byte const& value, Word const& address);
-	void WriteWord(Word const& value, Word const& address);
+	const Byte ReadByte(Word address);
+	const Word ReadWord(Word address);
+	void WriteByte(Byte value, Word address);
+	void WriteWord(Word value, Word address);
 
 	//Interrupts
 	void SetInterruptEnable(Word value)
@@ -32,11 +32,11 @@ public:
 		IF |= value;
 	}
 
-	Word const& GetInterruptEnable()
+	Word GetInterruptEnable()
 	{
 		return IE;
 	}
-	Word const& GetInterruptFlag()
+	Word GetInterruptFlag()
 	{
 		return IF;
 	}
@@ -81,8 +81,8 @@ private:
 	Byte romOffset;
 	Byte ramOffset;
 
-	void MBC1_WriteByte(Byte const& value, Word const& address);
-	void MBC2_WriteByte(Byte const& value, Word const& address);
-	void MBC3_WriteByte(Byte const& value, Word const& address);
+	void MBC1_WriteByte(Byte value, Word address);
+	void MBC2_WriteByte(Byte value, Word address);
+	void MBC3_WriteByte(Byte value, Word address);
 };
 

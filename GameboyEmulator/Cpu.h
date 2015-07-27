@@ -121,7 +121,7 @@ private:
 		r2 = Memory::GetInstance().ReadByte(state.sp++); 
 		r1 = Memory::GetInstance().ReadByte(state.sp++); 
 	}
-	void PushToStack(Byte const&  r1, Byte const& r2)
+	void PushToStack(Byte  r1, Byte r2)
 	{
 		state.sp--; 
 		Memory::GetInstance().WriteByte(r1,state.sp);
@@ -139,26 +139,26 @@ private:
 	void CheckInterruptStatus();
 
 	//Load
-	void LoadOp(Byte& reg1, Byte const& reg2);
+	void LoadOp(Byte& reg1, Byte reg2);
 	void EightBitLoad();
 	void SixteenBitLoad();
 
 	//Arithmetic and logics
 
 	//Addition
-	void AddOp(Byte const& reg2);
+	void AddOp(Byte reg2);
 	void EightBitAdd();
 
 	//Addiction with carry flag
-	void AdcOp(Byte const& reg2);
+	void AdcOp(Byte reg2);
 	void EightBitAdc();
 
 	//Subtraction
-	void SubOp(Byte const& reg2);
+	void SubOp(Byte reg2);
 	void EightBitSub();
 
 	//Subtraction with carry flag
-	void SbcOp(Byte const& reg2);
+	void SbcOp(Byte reg2);
 	void EightBitSbc();
 
 	//Increment
@@ -170,13 +170,13 @@ private:
 	void EightBitDec();
 	
 	//Logical operations
-	void OrOp(Byte const& reg2);
+	void OrOp(Byte reg2);
 	void EightBitOr();
-	void AndOp(Byte const& reg2);
+	void AndOp(Byte reg2);
 	void EightBitAnd();
-	void XorOp(Byte const& reg2);
+	void XorOp(Byte reg2);
 	void EightBitXor();
-	void CpOp(Byte const& reg2);
+	void CpOp(Byte reg2);
 	void EightBitCp();
 
 	//Sixteen bit operations
@@ -213,9 +213,9 @@ private:
 	void RotateShift();
 
 	//Bit
-	void BIT_Op(Byte& reg,Byte const& value);
-	void SET_Op(Byte& reg, Byte const& value);
-	void RES_Op(Byte& reg, Byte const& value);
+	void BIT_Op(Byte& reg,Byte value);
+	void SET_Op(Byte& reg, Byte value);
+	void RES_Op(Byte& reg, Byte value);
 	void BitSet();
 	
 	
@@ -225,7 +225,7 @@ private:
 	void Jump();
 	void CallOp(Flag const& flag, Flag const& value);
 	void Call();
-	void RestartOp(Byte const& address);
+	void RestartOp(Byte address);
 	void Restart();
 	void ReturnOp(Flag const& flag, Flag const& val);
 	void Return();

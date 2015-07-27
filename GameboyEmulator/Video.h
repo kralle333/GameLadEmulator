@@ -20,8 +20,8 @@ public:
 	void Reset();
 
 	//Methods
-	Byte ReadByte(Word const& address);
-	void WriteByte(Byte const&, Word const& address);
+	Byte ReadByte(Word address);
+	void WriteByte(Byte const&, Word address);
 	void UpdatePixels(unsigned int(&pixels)[cScreenWidth*cScreenHeight]);
 	void Step();
 private:
@@ -81,9 +81,9 @@ private:
 	Color GetPixel(int x, int y){ return screenBuffer[x + (y*cScreenWidth)]; }
 	void SetPixel(int x, int y, Color const color){ screenBuffer[x + (y*cScreenWidth)] = color; }
 	void RenderScan();
-	void UpdateTileData(Byte const&  value, Word const& address);
-	void UpdateObject(Byte const&  value, Word const&  address);
-	void UpdatePalette(Color palette[], Byte const& value);
+	void UpdateTileData(Byte  value, Word address);
+	void UpdateObject(Byte  value, Word  address);
+	void UpdatePalette(Color palette[], Byte value);
 	void PrintTile(int tile)
 	{
 		for (int y = 0; y < 8; y++)

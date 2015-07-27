@@ -305,7 +305,7 @@ void Cpu::AppendStateToFile(std::string path)
 }
 
 //Load
-void Cpu::LoadOp(Byte& reg1, Byte const& reg2)
+void Cpu::LoadOp(Byte& reg1, Byte reg2)
 {
 	reg1 = reg2;
 	state.pc++;
@@ -472,7 +472,7 @@ void Cpu::SixteenBitLoad()
 }
 
 //Arithmetic and logics
-void Cpu::AddOp(Byte const& reg)
+void Cpu::AddOp(Byte reg)
 {
 	state.f_N = reset;
 	state.f_H = !CpuHelper::isHalfCarry(state.A, reg);
@@ -500,7 +500,7 @@ void Cpu::EightBitAdd()
 	}
 }
 
-void Cpu::AdcOp(Byte const& reg2)
+void Cpu::AdcOp(Byte reg2)
 {
 
 	state.f_H = !CpuHelper::isHalfCarry(state.A, reg2 + state.f_C);
@@ -530,7 +530,7 @@ void Cpu::EightBitAdc()
 	}
 }
 
-void Cpu::SubOp(Byte const& reg)
+void Cpu::SubOp(Byte reg)
 {
 	state.f_H = !CpuHelper::isHalfBorrow(state.A, reg);
 	state.f_C = !CpuHelper::isBorrow(state.A, reg);
@@ -557,7 +557,7 @@ void Cpu::EightBitSub()
 	}
 }
 
-void Cpu::SbcOp(Byte const& reg)
+void Cpu::SbcOp(Byte reg)
 {
 	state.f_H = CpuHelper::isHalfBorrow(state.A, reg + state.f_C);
 	Flag old = state.f_C;
@@ -679,7 +679,7 @@ void Cpu::EightBitDec()
 	}
 }
 
-void Cpu::OrOp(Byte const& reg)
+void Cpu::OrOp(Byte reg)
 {
 	state.A |= reg;
 	state.f_Z = 0 == state.A;
@@ -706,7 +706,7 @@ void Cpu::EightBitOr()
 	}
 }
 
-void Cpu::AndOp(Byte const& reg)
+void Cpu::AndOp(Byte reg)
 {
 	state.A &= reg;
 	state.f_Z = 0 == state.A;
@@ -734,7 +734,7 @@ void Cpu::EightBitAnd()
 	}
 }
 
-void Cpu::XorOp(Byte const& reg)
+void Cpu::XorOp(Byte reg)
 {
 	state.A ^= reg;
 	state.f_Z = 0 == state.A;
@@ -763,7 +763,7 @@ void Cpu::EightBitXor()
 	}
 }
 
-void Cpu::CpOp(Byte const& reg)
+void Cpu::CpOp(Byte reg)
 {
 	state.f_Z = state.A == reg;
 	state.f_C = (state.A < reg);
@@ -1085,7 +1085,7 @@ void Cpu::RotatesMisc()
 	}
 }
 
-void Cpu::BIT_Op(Byte& reg, Byte const& value)
+void Cpu::BIT_Op(Byte& reg, Byte value)
 {
 	state.f_Z = GameBoyHelper::GetByteBit(reg, value) == 0;
 	state.f_N = reset;
@@ -1093,13 +1093,13 @@ void Cpu::BIT_Op(Byte& reg, Byte const& value)
 	state.pc++;
 	UpdateClocks(2, 8);
 }
-void Cpu::SET_Op(Byte& reg, Byte const& pos)
+void Cpu::SET_Op(Byte& reg, Byte pos)
 {
 	GameBoyHelper::SetByteBit(reg, set, pos);
 	state.pc++;
 	UpdateClocks(2, 8);
 }
-void Cpu::RES_Op(Byte& reg, Byte const& pos)
+void Cpu::RES_Op(Byte& reg, Byte pos)
 {
 	GameBoyHelper::SetByteBit(reg, reset, pos);
 	state.pc++;
@@ -1250,7 +1250,7 @@ void Cpu::Call()
 	}
 }
 
-void Cpu::RestartOp(Byte const& address)
+void Cpu::RestartOp(Byte address)
 {
 	PushPCToStack();
 	state.pc = address;

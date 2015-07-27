@@ -39,36 +39,36 @@ public:
 		}
 		return result;
 	}
-	static Word& CombineToWord(Byte const& a, Byte const& b)
+	static Word& CombineToWord(Byte a, Byte b)
 	{
 		Word w = ((a << 8) | b);
 		return w;
 	}
 	
 	//Bit setting/getting
-	static void SetByteBits(Byte& var, Byte const& value, Byte const& pos, Byte const& len)
+	static void SetByteBits(Byte& var, Byte value, Byte pos, Byte len)
 	{
 		var = (var&~(len << pos)) | (value&len) << pos;
 	}
-	static Byte GetByteBits(Byte const& var, Byte const& pos, Byte const& len)
+	static Byte GetByteBits(Byte var, Byte pos, Byte len)
 	{
 		return ((var >> ((pos + 1) - len))&len);
 	}
-	static void SetByteBit(Byte& var, Byte const& value, Byte const& pos) 
+	static void SetByteBit(Byte& var, Byte value, Byte pos) 
 	{
 		SetByteBits(var, value, pos, 1);
 	}
-	static Byte GetByteBit(Byte const& var, Byte const& pos)
+	static Byte GetByteBit(Byte var, Byte pos)
 	{
 		return (var >> pos & 1);
 	}
 	
 	//Rotations
-	static void RotateLeft(Byte& a, Byte const& n)
+	static void RotateLeft(Byte& a, Byte n)
 	{
 		a = (a << n) | (a >> (8 - n));
 	}
-	static void RotateRight(Byte& a, Byte const& n)
+	static void RotateRight(Byte& a, Byte n)
 	{
 		a = (a >> n) | (a << (8 - n));
 	}

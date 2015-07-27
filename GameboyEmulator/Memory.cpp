@@ -123,7 +123,7 @@ void Memory::Reset()
 	WriteByte(0xE1, 0xFF0F);//IF
 }
 
-const Byte Memory::ReadByte(Word const& address)
+const Byte Memory::ReadByte(Word address)
 {
 	if (address < 0x4000)
 	{
@@ -184,13 +184,13 @@ const Byte Memory::ReadByte(Word const& address)
 
 	return 0x0;
 }
-const Word Memory::ReadWord(Word const& address)
+const Word Memory::ReadWord(Word address)
 {
 	Word w = GameBoyHelper::CombineToWord(ReadByte(address + 1), ReadByte(address));
 	return w;
 }
 
-void Memory::WriteByte(Byte const& value, Word const& address)
+void Memory::WriteByte(Byte value, Word address)
 {
 	if (address < 0x8000)
 	{
@@ -298,7 +298,7 @@ void Memory::WriteByte(Byte const& value, Word const& address)
 		if (isDebugging){ std::cout << "Something wrong, unknown address:" << address << std::endl; };
 	}
 }
-void Memory::MBC1_WriteByte(Byte const& value, Word const& address)
+void Memory::MBC1_WriteByte(Byte value, Word address)
 {
 	if (address < 0x2000)//Ram enable
 	{
@@ -359,16 +359,16 @@ void Memory::MBC1_WriteByte(Byte const& value, Word const& address)
 		}
 	}
 }
-void Memory::MBC2_WriteByte(Byte const& value, Word const& address)
+void Memory::MBC2_WriteByte(Byte value, Word address)
 {
 
 }
-void Memory::MBC3_WriteByte(Byte const& value, Word const& address)
+void Memory::MBC3_WriteByte(Byte value, Word address)
 {
 
 }
 
-void Memory::WriteWord(Word const& value, Word const& address)
+void Memory::WriteWord(Word value, Word address)
 {
 	WriteByte(0x00FF & value, address);
 	WriteByte(value >> 8, address + 1);

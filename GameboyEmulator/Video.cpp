@@ -60,7 +60,7 @@ void Video::Reset()
 }
 
 //IO
-Byte Video::ReadByte(Word const& address)
+Byte Video::ReadByte(Word address)
 {
 	Byte b = 0x0;
 	if (address < 0xA000)
@@ -94,7 +94,7 @@ Byte Video::ReadByte(Word const& address)
 	}
 	return b;
 }
-void Video::WriteByte(Byte const& value, Word const& address)
+void Video::WriteByte(Byte value, Word address)
 {
 	if (address < 0x9800)//Tile data
 	{
@@ -145,7 +145,7 @@ void Video::WriteByte(Byte const& value, Word const& address)
 		}
 	}
 }
-void Video::UpdateTileData(Byte const& value, Word const& address)
+void Video::UpdateTileData(Byte value, Word address)
 {
 
 	Word writeAddress = address;
@@ -167,7 +167,7 @@ void Video::UpdateTileData(Byte const& value, Word const& address)
 		bg_tiles[tile][y][x] = bitValue1 + bitValue2;
 	}
 }
-void Video::UpdateObject(Byte const& value, Word const& address)
+void Video::UpdateObject(Byte value, Word address)
 {
 	int obj = (address & 0x00FF) >> 2;//Get F9 bits, divide with 4 to get obj correct id
 	std::cout << "Updating object: " << obj << std::endl;
@@ -190,7 +190,7 @@ void Video::UpdateObject(Byte const& value, Word const& address)
 		break;
 	}
 }
-void Video::UpdatePalette(Color palette[], Byte const& value)
+void Video::UpdatePalette(Color palette[], Byte value)
 {
 	for (int i = 0; i < 4; i++)
 	{
